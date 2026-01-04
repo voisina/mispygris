@@ -1,5 +1,12 @@
 # misPYgris 
-Malware Static Analyzer integrated to MISP API
+Mispygris is a static malware analysis tool integrated into the MISP platform using the PYMISP API. The program operates in two modes. 
+
+The “populate” mode extracts metadata from a binary file as well as printable strings contained within it and writes this data to a text file. 
+
+The “query” mode uses the MISP API to search the attributes based on the previously created file. 
+
+The objective of this project is to perform an initial triage of suspicious binaries using a local instance of MISP in order to prevent any data leaks.
+
 
 <img src="avatar.jpg" alt="Alt text" style="width:50%; height:auto;">
 
