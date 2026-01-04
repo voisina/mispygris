@@ -19,6 +19,8 @@ pip install pymisp pefile
 ```
 
 ## Documentation
+For more information about how MISPYGRIS works, see the post on my blog:  https://voisina.github.io/2026/01/01/blog-post-mispygris.html
+
 ```bash
 usage: mistigris.py [-h] [-f FILE] -m {populate,query} [-n MIN_LENGTH] [--misp-url MISP_URL] [--misp-key MISP_KEY] [--misp-cert MISP_CERT] [--ioc-file IOC_FILE]
 
@@ -48,3 +50,6 @@ options:
 
 ## Limitations and future improvements 
 
+Mispygris is currently in test version 0.1. For the moment, it only performs searches based on attributes in MISP. Future objectives are to expand the possibilities by using other features of the PYMISP API. In addition, the number of regexes used is limited, and studying different malware would make IOC extraction more relevant. Finally, IOC extraction from printable character strings is obviously not functional if certain parts of the malware are encrypted.
+
+If you notice any possible improvements or are interested in participating in the project, please do not hesitate to reach me. 
