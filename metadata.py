@@ -78,14 +78,14 @@ def analyze_pe(file_path):
     details = {}
 
     pe_spec = {}
-    unusual_name = "false"
-    suspect_name = "false"
-    suspicious_entropy = "false"
     
     pe_spec["name"] = file_path
     pe_spec["file_hashes"] = get_file_hashes(file_path)
     pe_spec["sections"] = []
     for section in pe.sections:
+        unusual_name = "false"
+        suspect_name = "false"
+        suspicious_entropy = "false"
         section_name = section.Name.decode(errors='ignore').rstrip('\x00')
         entropy = section_entropy(section.get_data())
         if(section_name not in USUAL_SECTIONS): unusual_name = "true"
