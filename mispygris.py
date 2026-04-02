@@ -90,6 +90,23 @@ def process_file(filename, min_length, mode, outfile=None):
                 line = f"{label}:{match.group()}"
                 outfile.write(line + "\n")
 
+def process_folder(folder_path: str, min_length: int, mode: str, outfile=None):
+    """
+    Recursively process all files in a folder.
+    Each file will be analyzed using process_file.
+    """
+    if not os.path.isdir(folder_path):
+        print(f"Warning: {folder_path} is not a directory, skipping.")
+        return
+
+    for root, _, files in os.walk(folder_path):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            try:
+                print(f"Processing file: {file_path}")
+                process_file(file_path, min_length, mode, outfile)
+            except Exception as e:
+                print(f"Error processing {file_path}: {e}")
 
 def main():
 
@@ -106,6 +123,7 @@ def main():
     """
     )
     parser.add_argument("-f", "--file", help="Path to a binary file")
+    parser.add_argument("-d", "--folder", help="Path to a folder containing binary files")
     parser.add_argument("-m","--mode",choices=["populate", "query"],required=True,help="populate: store artifacts, query: check on MISP instance")
     parser.add_argument("-n", "--min-length", type=int, default=4, help="Minimum string length (default: 4)")
     parser.add_argument("--misp-url", help="MISP instance URL")
